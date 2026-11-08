@@ -18,8 +18,6 @@ class Calculator {
     current = null,
     previous = null,
   ) {
-    console.log(operationValue, operation, current, previous);
-
     if (operationValue === null) {
       this.currentOperationText.innerText += this.currentOperation;
     } else {
