@@ -51,14 +51,24 @@ class Calculator {
       case "-":
         operationValue = previous - current;
         this.updateScreen(operationValue, operation, current, previous);
+        break;
       case "*":
         operationValue = previous * current;
         this.updateScreen(operationValue, operation, current, previous);
+        break;
       case "/":
         operationValue = previous / current;
         this.updateScreen(operationValue, operation, current, previous);
+        break;
       case "DEL":
         this.processDelOperator();
+        break;
+      case "CE":
+        this.processClearOperationOperator();
+        break;
+      case "C":
+        this.processClearAllOperation();
+        break;
       default:
         return;
     }
@@ -76,6 +86,15 @@ class Calculator {
   processDelOperator() {
     this.currentOperationText.innerText =
       this.currentOperationText.innerText.slice(0, -1);
+  }
+
+  processClearOperationOperator() {
+    this.currentOperationText.innerText = "";
+  }
+
+  processClearAllOperation() {
+    this.previousOperationText.innerText = "";
+    this.currentOperationText.innerText = "";
   }
 }
 
