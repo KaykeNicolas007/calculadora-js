@@ -6,6 +6,8 @@ class Calculator {
   }
 
   addDigit(digit) {
+    if (this.currentOperationText.innerText.includes(".") && digit === ".")
+      return;
     this.currentOperation = digit;
     this.updateScreen();
   }
