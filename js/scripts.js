@@ -33,7 +33,7 @@ class Calculator {
 
   processOperation(operation) {
     let operationValue;
-    const previous = +this.previousOperationText.innerText;
+    const previous = +this.previousOperationText.innerText.split(" ")[0];
     const current = +this.currentOperationText.innerText;
 
     switch (operation) {
@@ -41,6 +41,15 @@ class Calculator {
         operationValue = previous + current;
         this.updateScreen(operationValue, operation, current, previous);
         break;
+      case "-":
+        operationValue = previous - current;
+        this.updateScreen(operationValue, operation, current, previous);
+      case "*":
+        operationValue = previous * current;
+        this.updateScreen(operationValue, operation, current, previous);
+      case "/":
+        operationValue = previous / current;
+        this.updateScreen(operationValue, operation, current, previous);
       default:
         return;
     }
