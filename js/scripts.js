@@ -32,7 +32,7 @@ class Calculator {
   }
 
   processOperation(operation) {
-    if (this.currentOperationText.innerText === "") {
+    if (this.currentOperationText.innerText === "" && operation !== "C") {
       if (this.previousOperationText.innerText !== "") {
         this.changeOperation(operation);
       }
