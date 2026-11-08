@@ -32,6 +32,13 @@ class Calculator {
   }
 
   processOperation(operation) {
+    if (this.currentOperationText.innerText === "") {
+      if (this.previousOperationText.innerText !== "") {
+        this.changeOperation(operation);
+      }
+      return;
+    }
+
     let operationValue;
     const previous = +this.previousOperationText.innerText.split(" ")[0];
     const current = +this.currentOperationText.innerText;
@@ -53,6 +60,15 @@ class Calculator {
       default:
         return;
     }
+  }
+
+  changeOperation(operation) {
+    const mathOperations = ["+", "-", "*", "/"];
+
+    if (!mathOperations.includes(operation)) return;
+
+    this.previousOperationText.innerText =
+      this.previousOperationText.innerText.slice(0, -1) + operation;
   }
 }
 
