@@ -12,8 +12,38 @@ class Calculator {
     this.updateScreen();
   }
 
-  updateScreen() {
-    this.currentOperationText.innerText += this.currentOperation;
+  updateScreen(
+    operationValue = null,
+    operation = null,
+    current = null,
+    previous = null,
+  ) {
+    console.log(operationValue, operation, current, previous);
+
+    if (operationValue === null) {
+      this.currentOperationText.innerText += this.currentOperation;
+    } else {
+      if (previous === 0) {
+        operationValue = current;
+      }
+      this.previousOperationText.innerText = `${operationValue} ${operation}`;
+      this.currentOperationText.innerText = "";
+    }
+  }
+
+  processOperation(operation) {
+    let operationValue;
+    const previous = +this.previousOperationText.innerText;
+    const current = +this.currentOperationText.innerText;
+
+    switch (operation) {
+      case "+":
+        operationValue = previous + current;
+        this.updateScreen(operationValue, operation, current, previous);
+        break;
+      default:
+        return;
+    }
   }
 }
 
@@ -30,7 +60,7 @@ buttons.forEach(function (button) {
     if (+value >= 0 || value === ".") {
       calc.addDigit(value);
     } else {
-      console.log("operação");
+      calc.processOperation(value);
     }
   });
 });
