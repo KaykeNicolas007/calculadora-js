@@ -4,6 +4,15 @@ class Calculator {
     this.currentOperationText = currentOperationText;
     this.currentOperation = "";
   }
+
+  addDigit(digit) {
+    this.currentOperation = digit;
+    this.updateScreen();
+  }
+
+  updateScreen() {
+    this.currentOperationText.innerText += this.currentOperation;
+  }
 }
 
 const previousOperationText = document.querySelector("#previous-operation");
@@ -17,7 +26,7 @@ buttons.forEach(function (button) {
     const value = event.target.innerText;
 
     if (+value >= 0 || value === ".") {
-      console.log("numero");
+      calc.addDigit(value);
     } else {
       console.log("operação");
     }
